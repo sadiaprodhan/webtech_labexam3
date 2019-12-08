@@ -1,0 +1,57 @@
+
+<html>
+<script>
+function f1()
+{  var username = document.getElementById('uname').value;
+ var pass= document.getElementById('upass').value;
+ if( username=="" || pass=="")
+{ document.getElementById('logindiv').innerHTML="null submission";}
+
+else
+{
+var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", "login.php", true);
+				xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				xhttp.send('uname='+username+'&pass='+pass);
+			
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+					if(this.responseText=="true")
+					{window.location.href='Home.php';}
+					 	else
+						{document.getElementById('logindiv').innerHTML = this.responseText;}					 
+					}};
+}}
+
+</script>
+<body>
+<form>
+<fieldset>
+<legend> Login </legend>
+<table>
+<tr>
+<td> Username: </td>
+<td> <input type= "text" name= "username" id="uname"> </td>
+</tr>
+<tr>
+<td>Password </td>
+<td> <input type= "Password" name= "pass" id="upass"> </td>
+</tr>
+
+<tr>
+<td> <a href= "Registration.html"> Register Now! </a> </td>
+<td> <input type= "button" name="submit"  value="LOGIN" onclick ="f1()" > </td> </tr>
+<tr>
+<td> <div id= "logindiv"></div> </td>
+<td> </td>
+
+
+</tr>
+
+
+</table>
+</fieldset>
+
+</form>
+</body>
+</html>
